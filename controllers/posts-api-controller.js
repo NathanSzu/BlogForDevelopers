@@ -51,10 +51,21 @@ module.exports = function(app) {
   // POST route for saving a new post
   app.post("/api/posts", function(req, res) {
     console.log(req.body);
+    // app.get("/api/user/:name", function(req, res) {
+    //   db.Post.findOne({
+    //     where: {
+    //       name: req.params.name
+    //     }
+    //   })
+    // })
+    var { title, summary, body, category, headerURL, UserId } = req.body;
     db.Post.create({
-      title: req.body.title,
-      body: req.body.body,
-      category: req.body.category
+      title,
+      summary,
+      body,
+      category,
+      headerURL,
+      UserId
     })
       .then(function(dbPost) {
         res.json(dbPost);

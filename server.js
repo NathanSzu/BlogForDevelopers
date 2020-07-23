@@ -20,7 +20,7 @@ app.use(passport.session());
 
 // Requiring our routes
 // require("./controllers/html-routes.js")(app);
-require("./controllers/author-api-controller.js")(app);
+require("./controllers/user-api-controller.js")(app);
 require("./controllers/posts-api-controller.js")(app);
 
 // Syncing our database and logging a message to the user upon success
