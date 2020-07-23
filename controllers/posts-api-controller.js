@@ -17,8 +17,10 @@ module.exports = function(app) {
     db.Post.findAll({})
       .then(function(dbPost) {
         res.json(dbPost);
-      });
+      })
+      .catch(err => console.log(err))
   });
+  
 
   // Get route for returning posts of a specific category
   app.get("/api/posts/category/:category", function(req, res) {
@@ -29,7 +31,8 @@ module.exports = function(app) {
     })
       .then(function(dbPost) {
         res.json(dbPost);
-      });
+      })
+      .catch(err => console.log(err))
   });
 
   // Get route for retrieving a single post
@@ -41,7 +44,8 @@ module.exports = function(app) {
     })
       .then(function(dbPost) {
         res.json(dbPost);
-      });
+      })
+      .catch(err => console.log(err))
   });
 
   // POST route for saving a new post
@@ -54,7 +58,8 @@ module.exports = function(app) {
     })
       .then(function(dbPost) {
         res.json(dbPost);
-      });
+      })
+      .catch(err => console.log(err))
   });
 
   // DELETE route for deleting posts
@@ -66,7 +71,8 @@ module.exports = function(app) {
     })
       .then(function(dbPost) {
         res.json(dbPost);
-      });
+      })
+      .catch(err => console.log(err))
   });
 
   // PUT route for updating posts
@@ -79,6 +85,7 @@ module.exports = function(app) {
       })
       .then(function(dbPost) {
         res.json(dbPost);
-      });
+      })
+      .catch(err => console.log(err))
   });
 };

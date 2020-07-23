@@ -20,11 +20,13 @@ app.use(passport.session());
 
 // Requiring our routes
 // require("./controllers/html-routes.js")(app);
-// require("./controllers/api-routes.js")(app);
+require("./controllers/author-api-controller.js")(app);
+require("./controllers/posts-api-controller.js")(app);
 
 // Syncing our database and logging a message to the user upon success
 db.sequelize.sync().then(function() {
   app.listen(PORT, function() {
     console.log("==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.", PORT, PORT);
-  });
+  })
 });
+
