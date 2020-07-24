@@ -1,0 +1,11 @@
+.navlink {
+    float: right;
+    margin: auto;
+}
+.fixedspacing {
+    height: 70px
+}
+.spacing-wrapper {
+    position: relative;
+    top: 70px;
+}
