@@ -5,7 +5,29 @@
 .fixedspacing {
     height: 70px
 }
+
 .spacing-wrapper {
     position: relative;
     top: 70px;
+}
+
+.body-format {
+    text-align: left;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+}
+
+.imgCards {
+   width: 150px;
+    max-height: auto;
+}
+
+.homepageCard {
+    width: 200px;
+    height: 300px;
+    float: left;
 }

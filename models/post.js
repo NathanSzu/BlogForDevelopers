@@ -15,8 +15,7 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false
     },
     category: {
-      type: DataTypes.TEXT,
-      allowNull: false
+      type: DataTypes.STRING,
     },
     headerURL: {
       type: DataTypes.STRING,

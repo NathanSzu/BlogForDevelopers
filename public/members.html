@@ -1,81 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<meta name="Description" content="Enter your description here"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
-<link rel="stylesheet" href="/stylesheets/style.css">
-<title>Coding Blog</title>
-</head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top mb-5">
-        <a class="navbar-brand" href="/">Home</a>
-        <button class="navbar-toggler" data-target="#my-nav" data-toggle="collapse" aria-controls="my-nav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div id="my-nav" class="collapse navbar-collapse">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/logout" tabindex="-1" aria-disabled="true">Logout</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
 
-    <!-- Header -->
-    <div class="jumbotron text-center mt-5">
-        <h1 class="display-3">Newbs Tech Blog</h1>
-        <h2 class="member-name"></h2>
-        <hr>
-        <!-- <p class="lead">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="Description" content="Enter your description here" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <title>Coding Blog</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top mb-5">
+    <a class="navbar-brand" href="/">Home</a>
+    <button class="navbar-toggler" data-target="#my-nav" data-toggle="collapse" aria-controls="my-nav"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div id="my-nav" class="collapse navbar-collapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/logout" tabindex="-1" aria-disabled="true">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <div class="jumbotron text-center mt-5">
+    <h1 class="display-3">Newbs Tech Blog</h1>
+    <h2 class="member-name"></h2>
+    <hr>
+    <!-- <p class="lead">
           <a class="btn btn-danger btn-lg" href="/" role="button">Go Home</a>
         </p> -->
+  </div>
+
+  <!--Body  -->
+
+  <div class="container m-auto">
+    <div class="row">
+      <div class="col-5">
+        <img src="" alt="" id="bioImg">
+        <h4 id="email"></h4>
+        <p id="createdAt"></p>
+      </div>
+      <div class="col-7">
+        <h3 class="text-center">BIO:</h3>
+        <p class="text-center float-right" id="bioTxt"></p>
+      </div>
+    </div>
+    <div class="row">
+       <!-- Button trigger modal. Feel free to edit the static location and styling of this button -->
+        <button type="button" class="btn btn-primary text-center" data-toggle="modal" data-target="#createPostModal">
+          Create a new post
+        </button>
+  <!-- Button trigger modal end -->
     </div>
 
-    <!--Body  -->
-    
+    <div id="userPosts">
+
+    </div>
+  </div>
 
 
 
 
 
 
-    <!-- Button trigger modal. Feel free to edit the static location and styling of this button -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-    Launch demo modal
-    </button>
-    <!-- Button trigger modal end -->
-  
-  
-    <!-- Modal. PUT anywhere -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+ 
+
+
+  <!-- Modal to CREATE POSTS. PUT anywhere -->
+  <div class="modal fade" id="createPostModal" tabindex="-1" role="dialog" aria-labelledby="createPostModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <h5 class="modal-title" id="createPostModalLabel">Create New Article</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          ...
+          <form method="post">
+            <label for="post-title">Article Title</label>
+            <br>
+            <input type="text" id="post-title">
+            <hr>
+            <label for="post-summary">Summary</label>
+            <br>
+            <input type="text" id="post-summary">
+            <hr>
+            <label for="post-body">Body</label>
+            <br>
+            <textarea name="body" id="post-body" cols="50" rows="10"></textarea>
+            <hr>
+            <!-- Category Checkboxes -->
+            <h5>Topic</h5>
+            <input name="category" value="html" type="radio" id="html">
+            <label for="html">HTML</label>
+            <input name="category" value="css" type="radio" id="css">
+            <label for="css">CSS</label>
+            <input name="category" value="bootstrap" type="radio" id="bootstrap">
+            <label for="bootstrap">Bootstrap</label>
+            <input name="category" value="materialize" type="radio" id="materialize">
+            <label for="materialize">Materialize</label>
+            <input name="category" value="js" type="radio" id="js">
+            <label for="js">JavaScript</label>
+            <input name="category" value="jquery" type="radio" id="jquery">
+            <label for="jquery">JQuery</label>
+            <input name="category" value="sql" type="radio" id="sql">
+            <label for="sql">SQL</label>
+            <input name="category" value="mysql" type="radio" id="mysql">
+            <label for="mysql">MYSQL</label>
+            <!-- Category Checkboxes End -->
+            <hr>
+            <label for="post-image">Header Image Link</label>
+            <br>
+            <input type="url" id="post-image">
+          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-primary" id="save-post">Save</button>
         </div>
       </div>
     </div>
   </div>
   <!-- Modal End -->
-    
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
-<script src="/js/members.js"></script>
+
+  <!-- Modal to EDIT POSTS. PUT anywhere -->
+  <div class="modal fade" id="editPostModal" tabindex="-1" role="dialog" aria-labelledby="editPostModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editPostModalLabel">Edit Existing Article</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form method="post">
+            <label for="post-title">Article Title</label>
+            <br>
+            <input type="text" id="post-title">
+            <hr>
+            <label for="post-summary">Summary</label>
+            <br>
+            <input type="text" id="post-summary">
+            <hr>
+            <label for="post-body">Body</label>
+            <br>
+            <textarea name="body" id="post-body" cols="50" rows="10"></textarea>
+            <hr>
+            <!-- Category Checkboxes -->
+            <h5>Topic</h5>
+            <input name="category" value="html" type="radio" id="html">
+            <label for="html">HTML</label>
+            <input name="category" value="css" type="radio" id="css">
+            <label for="css">CSS</label>
+            <input name="category" value="bootstrap" type="radio" id="bootstrap">
+            <label for="bootstrap">Bootstrap</label>
+            <input name="category" value="materialize" type="radio" id="materialize">
+            <label for="materialize">Materialize</label>
+            <input name="category" value="js" type="radio" id="js">
+            <label for="js">JavaScript</label>
+            <input name="category" value="jquery" type="radio" id="jquery">
+            <label for="jquery">JQuery</label>
+            <input name="category" value="sql" type="radio" id="sql">
+            <label for="sql">SQL</label>
+            <input name="category" value="mysql" type="radio" id="mysql">
+            <label for="mysql">MYSQL</label>
+            <!-- Category Checkboxes End -->
+            <hr>
+            <label for="post-image">Header Image Link</label>
+            <br>
+            <input type="url" id="post-image">
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="save-post">Update</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal End -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
+  <script src="/js/members.js"></script>
 
 </body>
+
 </html>
