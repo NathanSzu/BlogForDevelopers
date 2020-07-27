@@ -8,9 +8,9 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
-      //   validate: {
-      //     isEmail: true
-      //   }
+        validate: {
+          isEmail: true
+        }
     },
     // The password cannot be null
     password: {
@@ -19,15 +19,14 @@ module.exports = function (sequelize, DataTypes) {
     },
     name: {
       type: DataTypes.STRING,
-      allowNull: false
+      
     },
     imgURL: {
       type: DataTypes.STRING,
-      allowNull: false
+      
     },
     bio: {
       type: DataTypes.STRING,
-      allowNull: false
     }
   });
   User.associate = function (models) {

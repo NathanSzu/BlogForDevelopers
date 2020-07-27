@@ -23,7 +23,6 @@ app.use(passport.session());
 require("./controllers/user-api-controller.js")(app);
 require("./controllers/posts-api-controller.js")(app);
 require("./controllers/html-controller.js")(app);
-
 // Syncing our database and logging a message to the user upon success
 db.sequelize.sync().then(function() {
   app.listen(PORT, function() {
