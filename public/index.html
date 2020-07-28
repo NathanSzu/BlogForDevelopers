@@ -6,10 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="Description" content="Enter your description here" />
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
-    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link href="stylesheets/style.css" rel="stylesheet">
     <title>Coding Blog</title>
 </head>
 
@@ -31,11 +30,26 @@
 
     <div class="jumbotron text-center mt-5">
         <h1 class="display-3">Newbs Tech Blog</h1>
+        <h5>This is a blog built by web devs, for web devs </h5>
+        <h5>You can browse the articles below, or filter them by a specific subject</h5>
         <hr>
-        <!-- <p class="lead">
-          <a class="btn btn-danger btn-lg" href="/" role="button">Go Home</a>
-        </p> -->
     </div>
+
+    <div class="dropdown">
+        <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+        <div id="myDropdown" class="dropdown-content">
+          <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+          <a href="#about">HTML</a>
+          <a href="#base">CSS</a>
+          <a href="#blog">Bootstrap</a>
+          <a href="#contact">Materialize</a>
+          <a href="#custom">JavaScript</a>
+          <a href="#support">JQuery</a>
+          <a href="#tools">SQL</a>
+          <a href="#tools">MYSQL</a>
+        </div>
+      </div>
+
     <div class="container m-auto">
         <div class="row">
             <div id="articles" class="card-body">

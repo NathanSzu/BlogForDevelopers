@@ -42,6 +42,14 @@
   <!--Body  -->
 
   <div class="container m-auto">
+    <!-- Button trigger USER INFO modal. Feel free to edit the static location and styling of this button -->
+    <div class="text-center">
+      <button type="button" class="btn btn-primary text-center" data-toggle="modal" data-target="#editUserModal">
+        Edit profile Info
+      </button>
+    </div>
+    
+<!-- Button trigger modal end -->
     <div class="row">
       <div class="col-5">
         <img src="" alt="" id="bioImg">
@@ -50,11 +58,11 @@
       </div>
       <div class="col-7">
         <h3 class="text-center">BIO:</h3>
-        <p class="text-center float-right" id="bioTxt"></p>
+        <p class="text-center" id="bioTxt"></p>
       </div>
     </div>
     <div class="row">
-       <!-- Button trigger modal. Feel free to edit the static location and styling of this button -->
+       <!-- Button trigger NEW POST modal. Feel free to edit the static location and styling of this button -->
         <button type="button" class="btn btn-primary text-center" data-toggle="modal" data-target="#createPostModal">
           Create a new post
         </button>
@@ -134,30 +142,65 @@
   </div>
   <!-- Modal End -->
 
-  <!-- Modal to EDIT POSTS. PUT anywhere -->
-  <div class="modal fade" id="editPostModal" tabindex="-1" role="dialog" aria-labelledby="editPostModalLabel"
+  <!-- Modal to EDIT USERS. PUT anywhere -->
+  <div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="editUserModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="editPostModalLabel">Edit Existing Article</h5>
+          <h5 class="modal-title" id="editUserModalLabel">Edit User Info</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
           <form method="post">
-            <label for="post-title">Article Title</label>
+            <label for="user-name">Name</label>
             <br>
-            <input type="text" class="post-title">
+            <input type="text" id="user-name">
             <hr>
-            <label for="post-summary">Summary</label>
+            <label for="user-imgURL">Profile Picture (link)</label>
             <br>
-            <input type="text" class="post-summary">
+            <input type="text" id="user-imgURL">
             <hr>
-            <label for="post-body">Body</label>
+            <label for="user-bio">Bio</label>
             <br>
-            <textarea name="body" class="post-body" cols="50" rows="10"></textarea>
+            <textarea name="body" id="user-bio" cols="50" rows="5"></textarea>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="edit-user">Save Changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal End -->
+
+  <!-- Modal to EDIT POSTS. PUT anywhere -->
+  <div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="editUserModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editUserModalLabel">Edit Existing Article</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form method="post">
+            <label for="edit-title">Article Title</label>
+            <br>
+            <input type="text" id="edit-title">
+            <hr>
+            <label for="edit-summary">Summary</label>
+            <br>
+            <input type="text" id="edit-summary">
+            <hr>
+            <label for="edit-body">Body</label>
+            <br>
+            <textarea name="body" id="edit-body" cols="50" rows="10"></textarea>
             <hr>
             <!-- Category Checkboxes -->
             <h5>Topic</h5>
@@ -179,14 +222,15 @@
             <label for="mysql">MYSQL</label>
             <!-- Category Checkboxes End -->
             <hr>
-            <label for="post-image">Header Image Link</label>
+            <label for="edit-image">Header Image Link</label>
             <br>
-            <input type="url" class="post-image">
+            <input type="url" id="edit-image">
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           <button type="button" class="btn btn-primary" id="edit-post">Update</button>
+          <button type="button" class="btn btn-primary delete" id="delete-post">Delete</button>
         </div>
       </div>
     </div>

@@ -15,12 +15,42 @@ $(document).ready(function () {
       // Header
       $(".member-name").text(name);
       // Left side
-      $("#bioImg").attr("src", imgURL);
+      $("#bioImg").attr("src", imgURL)
+      $("#bioImg").addClass("imgCards");
       $("#email").text(email);
       $("#createdAt").text(`Account created: ${data.createdAt}`);
       // Right side
       $("#bioTxt").text(bio);
       // Current posts
+
+      // Populating the modal for updating user information!
+      $('#user-name').val(name)
+      $('#user-imgURL').val(imgURL)
+      $('#user-bio').val(bio)
+
+      function updateUserInfo(userData) {
+        $.ajax({
+          method: "PUT",
+          url: "/api/user",
+          data: userData
+        })
+          .then(function () {
+            // location.reload();
+          })
+          .catch(err => console.log(err))
+      }
+
+      $('#edit-user').on('click', function () {
+        event.preventDefault()
+        var userData = {
+          name: $('#user-name').val(),
+          imgURL: $('#user-imgURL').val(),
+          bio: $('#user-bio').val(),
+          userId: id
+        }
+        console.log(userData)
+        updateUserInfo(userData)
+      })
 
       for (let i = 0; i < data.Posts.length; i++) {
 
@@ -32,6 +62,7 @@ $(document).ready(function () {
 
         const titleinput = $('<h2>').text(title);
         const headerURLinput = $('<img>').attr(headerURL);
+        headerURLinput
         // .style("width: 100%; height: auto;")
         const bodyinput = $('<pre>').text(body)
         bodyinput.addClass('body-format');
@@ -59,35 +90,62 @@ $(document).ready(function () {
 
           console.log(category)
 
-          $('.post-title').val(title)
-          $('.post-summary').val(summary)
-          $('.post-body').val(body)
-          $('.post-image').val(headerURL)
+          $('#edit-title').val(title)
+          $('#edit-summary').val(summary)
+          $('#edit-body').val(body)
+          $('#edit-image').val(headerURL)
 
           $("#edit-post").on("click", function () {
             event.preventDefault();
-        
-              const title = $("#post-title").val().trim();
-              const summary = $("#post-summary").val().trim();
-              const body = $("#post-body").val();
-              const category = getRBN();
-              const headerURL = $("#post-image").val().trim();
-              const UserId = data.id
-        
-              $.post(`/api/posts`, {
-                title,
-                summary,
-                body,
-                category,
-                headerURL,
-                UserId
+
+            const title = $('#edit-title').val().trim()
+            const summary = $('#edit-summary').val().trim()
+            const body = $('#edit-body').val()
+            const category = getRBN();
+            const headerURL = $('#edit-image').val().trim()
+
+            const updatedPost = {
+              title,
+              summary,
+              body,
+              category,
+              headerURL,
+              postId
+            }
+
+            updatePost(updatedPost)
+
+            function updatePost(post) {
+              $.ajax({
+                method: "PUT",
+                url: "/api/posts",
+                data: post
               })
-                .then(function (data) {
+                .then(function () {
                   location.reload();
-                })
-        
-            
-        
+                });
+            }
+
+
+
+
+
+
+          })
+
+          $("#delete-post").on("click", function () {
+            event.preventDefault();
+            function deletePost() {
+              $.ajax({
+                method: "DELETE",
+                url: `/api/posts/${postId}`,
+              })
+                .then(function () {
+                  location.reload();
+                });
+            }
+            deletePost()
+
           })
 
         })
@@ -129,6 +187,8 @@ $(document).ready(function () {
     });
 
   })
+
+
 
   // Function to return the CHECKED radio button value ONLY
   function getRBN() {

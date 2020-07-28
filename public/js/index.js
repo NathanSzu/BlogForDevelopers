@@ -34,15 +34,15 @@ $(document).ready(function () {
 
       $('#articles').empty()
 
-      $.get(`/api/posts/${Id}`).then(function (postData) {
+      $.get(`/api/posts/${cardId}`).then(function (postData) {
         const {UserID, body, category, id, summary, title, headerURL} = postData
-        console.log(postData)
 
         const card = $('<div class="card">').addClass('card, text-center');
         const cardBody = $('<div>').addClass('card-body');
 
         const titleinput = $('<h2>').text(title);
-        const headerURLinput = $('<img>').attr(headerURL);
+        const headerURLinput = $('<img>').attr("src", headerURL);
+        headerURLinput.addClass("imgCards")
         // .style("width: 100%; height: auto;")
         const bodyinput = $('<pre>').text(body)
         bodyinput.addClass('body-format');
@@ -51,18 +51,31 @@ $(document).ready(function () {
 
         cardBody.append(titleinput, headerURLinput, bodyinput, categoryinput)
         card.append(cardBody);
-        $('#activePost').prepend(card)
+        $('#articles').append(card)
 
-
-        window.location.href = "/post";
       })
-      
-  
-  
-      // $.get("/api/user_data").then(function (data) {
-      //   console.log("save data", data)
-  
     })
   })
 })
 
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+function filterFunction() {
+  var input, filter, ul, li, a, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  div = document.getElementById("myDropdown");
+  a = div.getElementsByTagName("a");
+  for (i = 0; i < a.length; i++) {
+    txtValue = a[i].textContent || a[i].innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      a[i].style.display = "";
+    } else {
+      a[i].style.display = "none";
+    }
+  }
+}

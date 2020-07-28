@@ -67,4 +67,18 @@ module.exports = function(app) {
       res.json(dbUser);
     }).catch(err => console.log(err))
   });
+
+  // PUT route for updating users
+  app.put("/api/user", function(req, res) {
+    db.User.update(req.body,
+      {
+        where: {
+          id: req.body.userId
+        }
+      })
+      .then(function(dbUser) {
+        res.json(dbUser);
+      })
+      .catch(err => console.log(err))
+  });
 };

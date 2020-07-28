@@ -5,8 +5,8 @@ $(document).ready(() => {
       const email = $('#email-input').val().trim();
       const password = $('#password-input').val().trim()
       const name = "Anonymous"
-      const imgURL = ""
-      const bio = ""
+      const imgURL = "https://memegenerator.net/img/instances/65173980/y-u-no-work-stupid-computer.jpg"
+      const bio = "This is where your bio will go. You should really write something cooler than this. This is lame.."
   
       const newUser = {
         email,

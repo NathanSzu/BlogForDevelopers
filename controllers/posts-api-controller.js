@@ -91,7 +91,7 @@ module.exports = function(app) {
     db.Post.update(req.body,
       {
         where: {
-          id: req.body.id
+          id: req.body.postId
         }
       })
       .then(function(dbPost) {
