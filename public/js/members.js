@@ -35,7 +35,7 @@ $(document).ready(function () {
           data: userData
         })
           .then(function () {
-            // location.reload();
+            location.reload();
           })
           .catch(err => console.log(err))
       }
