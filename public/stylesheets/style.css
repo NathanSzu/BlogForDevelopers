@@ -7,6 +7,18 @@ nav {
   padding-left: 25px;
 }
 
+hr {
+  background-color: lightgrey
+}
+
+h3 {
+  font-size: 20px;
+}
+
+.passport {
+  margin-top: 15px;
+}
+
 .txt-theme {
   color: rgb(54, 54, 78);
   font-weight: 500;
@@ -121,4 +133,13 @@ nav {
   .dropdown a:hover {background-color: #ddd;}
   
   .show {display: block;}
+
+  .center-wrapper {
+    position: relative;
+    top: 100px;
+    margin: auto;
+    border-radius: 25px;
+    padding-left: 25px;
+    padding-right: 25px;
+  }
  
