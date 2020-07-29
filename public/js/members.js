@@ -7,7 +7,6 @@ $(document).ready(function () {
 
     // Using the get request below, uses the id pulled from above, and finds the specific user's data. 
     $.get(`/api/user/${data.id}`).then(function (data) {
-      // console.log('This users data:', data)
 
       var { id, email, password, name, imgURL, bio, Posts } = data
       var { body, category, headerURL, summary, title } = Posts
@@ -47,7 +46,6 @@ $(document).ready(function () {
           bio: $('#user-bio').val(),
           userId: id
         }
-        console.log(userData)
         updateUserInfo(userData)
       })
 
@@ -81,14 +79,11 @@ $(document).ready(function () {
       $(".update-existing-post").on("click", function () {
         event.preventDefault();
         var postId = $(this).val()
-        console.log(postId);
 
         $.get(`/api/posts/${postId}`).then(function (postData) {
-          console.log(postData)
           var { title, summary, body, category, headerURL } = postData
 
-          console.log(category)
-
+          
           $('#edit-title').val(title)
           $('#edit-summary').val(summary)
           $('#edit-body').val(body)
@@ -97,22 +92,31 @@ $(document).ready(function () {
           $("#edit-post").on("click", function () {
             event.preventDefault();
 
-            const title = $('#edit-title').val().trim()
-            const summary = $('#edit-summary').val().trim()
-            const body = $('#edit-body').val()
-            const category = getRBN();
-            const headerURL = $('#edit-image').val().trim()
+        //   event.preventDefault()
+        // var userData = {
+        //   name: $('#user-name').val(),
+        //   imgURL: $('#user-imgURL').val(),
+        //   bio: $('#user-bio').val(),
+        //   userId: id
+        // }
+
+            // const title = $('#edit-title').val().trim()
+            // const summary = $('#edit-summary').val().trim()
+            // const body = $('#edit-body').val()
+            // const category = getRBN();
+            // const headerURL = $('#edit-image').val().trim()
 
             const updatedPost = {
-              title,
-              summary,
-              body,
-              category,
-              headerURL,
-              postId
+              title: $('#edit-title').val().trim(),
+              summary: $('#edit-summary').val().trim(),
+              body: $('#edit-body').val(),
+              category: getRBN(),
+              headerURL: $('#edit-image').val().trim(),
+              postId: postId
             }
 
             updatePost(updatedPost)
+            console.log(updatedPost)
 
             function updatePost(post) {
               $.ajax({
@@ -122,7 +126,8 @@ $(document).ready(function () {
               })
                 .then(function () {
                   location.reload();
-                });
+                })
+                .catch(err => console.log(err))
             }
 
 
@@ -141,7 +146,8 @@ $(document).ready(function () {
               })
                 .then(function () {
                   location.reload();
-                });
+                })
+                .catch(err => console.log(err))
             }
             deletePost()
 
@@ -162,7 +168,6 @@ $(document).ready(function () {
     event.preventDefault();
 
     $.get("/api/user_data").then(function (data) {
-      console.log("save data", data)
 
       const title = $("#post-title").val().trim();
       const summary = $("#post-summary").val().trim();

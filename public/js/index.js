@@ -67,6 +67,37 @@ $(document).ready(function () {
           card.append(cardBody);
           $('#articles').prepend(card)
         }
+
+        // ONE POST DISPLAY
+    $(".homepageCard").on("click", function () {
+      console.log("clicked")
+      // event.preventDefault();
+      var cardId = $(this).val()
+      console.log(cardId)
+
+      $('#articles').empty()
+
+      $.get(`/api/posts/${cardId}`).then(function (postData) {
+        const { body, category, title, headerURL } = postData
+
+        const card = $('<div class="card">').addClass('card, text-center');
+        const cardBody = $('<div>').addClass('card-body');
+
+        const titleinput = $('<h2>').text(title);
+        const headerURLinput = $('<img>').attr("src", headerURL);
+        headerURLinput.addClass("imgCards")
+        const bodyinput = $('<pre>').text(body)
+        bodyinput.addClass('body-format');
+        const categoryinput = $('<p>').text(category);
+
+
+        cardBody.append(titleinput, headerURLinput, bodyinput, categoryinput)
+        card.append(cardBody);
+        $('#articles').append(card)
+
+      })
+    }) // END OF ONE POST DISPLAY
+
       })
     }) // END OF Filter by Tag
 
@@ -137,6 +168,37 @@ $(document).ready(function () {
           $('#articles').prepend(card)
 
         }
+
+        // ONE POST DISPLAY
+    $(".homepageCard").on("click", function () {
+      console.log("clicked")
+      // event.preventDefault();
+      var cardId = $(this).val()
+      console.log(cardId)
+
+      $('#articles').empty()
+
+      $.get(`/api/posts/${cardId}`).then(function (postData) {
+        const { body, category, title, headerURL } = postData
+
+        const card = $('<div class="card">').addClass('card, text-center');
+        const cardBody = $('<div>').addClass('card-body');
+
+        const titleinput = $('<h2>').text(title);
+        const headerURLinput = $('<img>').attr("src", headerURL);
+        headerURLinput.addClass("imgCards")
+        const bodyinput = $('<pre>').text(body)
+        bodyinput.addClass('body-format');
+        const categoryinput = $('<p>').text(category);
+
+
+        cardBody.append(titleinput, headerURLinput, bodyinput, categoryinput)
+        card.append(cardBody);
+        $('#articles').append(card)
+
+      })
+    }) // END OF ONE POST DISPLAY
+
       })
     }) // End of clear filter
 
