@@ -16,7 +16,6 @@ $(document).ready(function () {
       $(".member-name").text(name);
       // Left side
       $("#bioImg").attr("src", imgURL)
-      $("#bioImg").addClass("imgCards");
       $("#email").text(email);
       $("#createdAt").text(`Account created: ${data.createdAt}`);
       // Right side

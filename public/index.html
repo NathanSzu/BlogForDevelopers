@@ -23,28 +23,45 @@
         <hr>
         <h5 class="jtxt">The blog built for developers, by developers.</h5>
         <h5 class="jtxt">Browse new articles, or filter by subject below.</h5>
-    </header>
-
-    <div class="dropdown">
-        <button onclick="myFunction()" class="dropbtn btn btn-primary text-center passport">Filter Posts</button>
-        <div id="myDropdown" class="dropdown-content">
-            <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
-            <a href="#about">HTML</a>
-            <a href="#base">CSS</a>
-            <a href="#blog">Bootstrap</a>
-            <a href="#contact">Materialize</a>
-            <a href="#custom">JavaScript</a>
-            <a href="#support">JQuery</a>
-            <a href="#tools">SQL</a>
-            <a href="#tools">MYSQL</a>
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle float-left" type="button" data-toggle="dropdown">Filter by topic
+            <span class="caret"></span></button>
+            <div class="dropdown-menu w-100 pl-3">
+                <button class="tag btn">HTML</button>
+                <a href="#base" class="tag">CSS</a>
+                <a href="#blog" class="tag">Bootstrap</a>
+                <a href="#contact" class="tag">Materialize</a>
+                <a href="#custom" class="tag">JavaScript</a>
+                <a href="#support" class="tag">JQuery</a>
+                <a href="#tools" class="tag">SQL</a>
+                <a href="#tools" class="tag">MYSQL</a>
+            </div>
         </div>
+        <div id="clearFilter">
+
+        </div>
+    </header>
+    
+
+
+   
+    <div class="">
+        <!-- <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()"> -->
+        
     </div>
 
-    <main class="container m-auto">
+    <main class="container">
         <div class="row">
-            <div id="articles" class="card-body">
-
+            <div>
+                <!-- FILTER GOES HERE -->
+               
             </div>
+            <div class="col-md-12">
+                <div class="row" id="articles">
+
+                </div>
+            </div>
+
         </div>
     </main>
 

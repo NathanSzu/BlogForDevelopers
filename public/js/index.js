@@ -5,28 +5,32 @@ $(document).ready(function () {
     for (let i = 0; i < response.length; i++) {
       const { title, summary, body, category, id, headerURL } = response[i];
       // Creating card body and card to store the data
-      const card = $('<div class="card">').addClass('card, text-center, col-1, float-left, homepageCard');
+      const card = $('<div>').addClass('card col-md-3 homepageCard');
       card.prop("value", id)
 
-
-      const cardBody = $('<div>').addClass('card-body, text-center');
-
+      const hr = $('<hr>')
+      const cardBody = $('<div>').addClass('card-body text-center');
+      const imgDiv = $('<div>')
+      imgDiv.addClass('imgDiv')
       const headerinputURL = $('<img>').attr("src", headerURL);
       headerinputURL.addClass('imgCards')
+      imgDiv.append(headerinputURL)
+      const textDiv = $('<div>')
+      textDiv.addClass('textDiv')
       const titleinput = $('<h6>').text(title);
       const summaryinput = $('<p>').text(summary);
-      // const bodyinput = $('<p>').text(`Body: ${body}`);
-      const catagoryinput = $('<p>').text(`Tags: ${category}`);
-      // const idinput = $('<p>').text(`id: ${id}`);
+      const categoryinput = $('<p>').text(`Tags: ${category}`);
 
+      textDiv.append(titleinput, hr, summaryinput, categoryinput)
 
-
-      cardBody.append(headerinputURL, titleinput, summaryinput, catagoryinput)
+      cardBody.append(imgDiv, textDiv)
       card.append(cardBody);
       $('#articles').prepend(card)
 
     }
 
+
+    // ONE POST DISPLAY
     $(".homepageCard").on("click", function () {
       // event.preventDefault();
       var cardId = $(this).val()
@@ -35,7 +39,7 @@ $(document).ready(function () {
       $('#articles').empty()
 
       $.get(`/api/posts/${cardId}`).then(function (postData) {
-        const {UserID, body, category, id, summary, title, headerURL} = postData
+        const {body, category, title, headerURL} = postData
 
         const card = $('<div class="card">').addClass('card, text-center');
         const cardBody = $('<div>').addClass('card-body');
@@ -79,3 +83,43 @@ function filterFunction() {
     }
   }
 }
+
+$(".tag").on("click", function () {
+  var tag = $(this).text()
+  console.log(tag)
+  $('#articles').empty()
+
+  $.get(`/api/posts/category/${tag}`).then(function (response) {
+    console.log(response)
+
+    console.log(response)
+    for (let i = 0; i < response.length; i++) {
+      const { title, summary, body, category, id, headerURL } = response[i];
+      // Creating card body and card to store the data
+      const card = $('<div>').addClass('card col-md-3 homepageCard');
+      card.prop("value", id)
+
+      const hr = $('<hr>')
+      const cardBody = $('<div>').addClass('card-body text-center');
+      const imgDiv = $('<div>')
+      imgDiv.addClass('imgDiv')
+      const headerinputURL = $('<img>').attr("src", headerURL);
+      headerinputURL.addClass('imgCards')
+      imgDiv.append(headerinputURL)
+      const textDiv = $('<div>')
+      textDiv.addClass('textDiv')
+      const titleinput = $('<h6>').text(title);
+      const summaryinput = $('<p>').text(summary);
+      const categoryinput = $('<p>').text(`Tags: ${category}`);
+
+      textDiv.append(titleinput, hr, summaryinput, categoryinput)
+
+      cardBody.append(imgDiv, textDiv)
+      card.append(cardBody);
+      $('#articles').prepend(card)
+
+    }
+
+
+  })
+})
