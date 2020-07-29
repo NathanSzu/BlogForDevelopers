@@ -1,10 +1,13 @@
 $(document).ready(function () {
 
+  // GET all posts
   $.get('/api/posts/').then(response => {
     console.log(response)
+    // $('#articles').empty()
     for (let i = 0; i < response.length; i++) {
       const { title, summary, body, category, id, headerURL } = response[i];
       // Creating card body and card to store the data
+
       const card = $('<div>').addClass('card col-md-3 homepageCard');
       card.prop("value", id)
 
@@ -26,20 +29,59 @@ $(document).ready(function () {
       cardBody.append(imgDiv, textDiv)
       card.append(cardBody);
       $('#articles').prepend(card)
+    } // END OF Render all posts
 
-    }
+    // Filter by Tag
+    $(".tag").on("click", function () {
+      var tag = $(this).text()
+      console.log(tag)
+      $('#articles').empty()
+      $('#clearFilter').removeClass("d-none")
+
+      $.get(`/api/posts/category/${tag}`).then(function (response) {
+        console.log(response)
+
+        for (let i = 0; i < response.length; i++) {
+          const { title, summary, body, category, id, headerURL } = response[i];
+          // Creating card body and card to store the data
+          const card = $('<div>').addClass('card col-md-3 homepageCard');
+          console.log(id)
+          card.prop("value", id)
+
+          const hr = $('<hr>')
+          const cardBody = $('<div>').addClass('card-body text-center');
+          const imgDiv = $('<div>')
+          imgDiv.addClass('imgDiv')
+          const headerinputURL = $('<img>').attr("src", headerURL);
+          headerinputURL.addClass('imgCards')
+          imgDiv.append(headerinputURL)
+          const textDiv = $('<div>')
+          textDiv.addClass('textDiv')
+          const titleinput = $('<h6>').text(title);
+          const summaryinput = $('<p>').text(summary);
+          const categoryinput = $('<p>').text(`Tags: ${category}`);
+
+          textDiv.append(titleinput, hr, summaryinput, categoryinput)
+
+          cardBody.append(imgDiv, textDiv)
+          card.append(cardBody);
+          $('#articles').prepend(card)
+        }
+      })
+    }) // END OF Filter by Tag
 
 
     // ONE POST DISPLAY
     $(".homepageCard").on("click", function () {
+      console.log("clicked")
       // event.preventDefault();
       var cardId = $(this).val()
-      // console.log(cardId)
+      console.log(cardId)
 
       $('#articles').empty()
 
       $.get(`/api/posts/${cardId}`).then(function (postData) {
-        const {body, category, title, headerURL} = postData
+        const { body, category, title, headerURL } = postData
 
         const card = $('<div class="card">').addClass('card, text-center');
         const cardBody = $('<div>').addClass('card-body');
@@ -47,7 +89,6 @@ $(document).ready(function () {
         const titleinput = $('<h2>').text(title);
         const headerURLinput = $('<img>').attr("src", headerURL);
         headerURLinput.addClass("imgCards")
-        // .style("width: 100%; height: auto;")
         const bodyinput = $('<pre>').text(body)
         bodyinput.addClass('body-format');
         const categoryinput = $('<p>').text(category);
@@ -58,68 +99,50 @@ $(document).ready(function () {
         $('#articles').append(card)
 
       })
-    })
-  })
-})
-
-/* When the user clicks on the button,
-toggle between hiding and showing the dropdown content */
-function myFunction() {
-  document.getElementById("myDropdown").classList.toggle("show");
-}
-
-function filterFunction() {
-  var input, filter, ul, li, a, i;
-  input = document.getElementById("myInput");
-  filter = input.value.toUpperCase();
-  div = document.getElementById("myDropdown");
-  a = div.getElementsByTagName("a");
-  for (i = 0; i < a.length; i++) {
-    txtValue = a[i].textContent || a[i].innerText;
-    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-      a[i].style.display = "";
-    } else {
-      a[i].style.display = "none";
-    }
-  }
-}
-
-$(".tag").on("click", function () {
-  var tag = $(this).text()
-  console.log(tag)
-  $('#articles').empty()
-
-  $.get(`/api/posts/category/${tag}`).then(function (response) {
-    console.log(response)
-
-    console.log(response)
-    for (let i = 0; i < response.length; i++) {
-      const { title, summary, body, category, id, headerURL } = response[i];
-      // Creating card body and card to store the data
-      const card = $('<div>').addClass('card col-md-3 homepageCard');
-      card.prop("value", id)
-
-      const hr = $('<hr>')
-      const cardBody = $('<div>').addClass('card-body text-center');
-      const imgDiv = $('<div>')
-      imgDiv.addClass('imgDiv')
-      const headerinputURL = $('<img>').attr("src", headerURL);
-      headerinputURL.addClass('imgCards')
-      imgDiv.append(headerinputURL)
-      const textDiv = $('<div>')
-      textDiv.addClass('textDiv')
-      const titleinput = $('<h6>').text(title);
-      const summaryinput = $('<p>').text(summary);
-      const categoryinput = $('<p>').text(`Tags: ${category}`);
-
-      textDiv.append(titleinput, hr, summaryinput, categoryinput)
-
-      cardBody.append(imgDiv, textDiv)
-      card.append(cardBody);
-      $('#articles').prepend(card)
-
-    }
+    }) // END OF ONE POST DISPLAY
 
 
-  })
-})
+    // Clear the filter and rerender all of the posts
+    $("#clearFilter").on("click", function () {
+      $('#articles').empty()
+      $('#clearFilter').addClass("d-none")
+
+      $.get('/api/posts/').then(response => {
+        console.log(response)
+        $('#articles').empty()
+        for (let i = 0; i < response.length; i++) {
+          const { title, summary, body, category, id, headerURL } = response[i];
+          // Creating card body and card to store the data
+
+          const card = $('<div>').addClass('card col-md-3 homepageCard');
+          card.prop("value", id)
+
+          const hr = $('<hr>')
+          const cardBody = $('<div>').addClass('card-body text-center');
+          const imgDiv = $('<div>')
+          imgDiv.addClass('imgDiv')
+          const headerinputURL = $('<img>').attr("src", headerURL);
+          headerinputURL.addClass('imgCards')
+          imgDiv.append(headerinputURL)
+          const textDiv = $('<div>')
+          textDiv.addClass('textDiv')
+          const titleinput = $('<h6>').text(title);
+          const summaryinput = $('<p>').text(summary);
+          const categoryinput = $('<p>').text(`Tags: ${category}`);
+
+          textDiv.append(titleinput, hr, summaryinput, categoryinput)
+
+          cardBody.append(imgDiv, textDiv)
+          card.append(cardBody);
+          $('#articles').prepend(card)
+
+        }
+      })
+    }) // End of clear filter
+
+
+  }) //End of get request
+
+
+})  //End of document.ready
+
