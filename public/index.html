@@ -19,15 +19,16 @@
     </nav>
 
     <header class="jumbotron text-center mt-5 jumbo-style">
-        <h1 class="display-3 jtxt">Newbs Tech Blog</h1>
+        <h1 class="display-3 jtxt" id="jheader">Newbs Tech Blog</h1>
         <hr>
-        <h5 class="jtxt">The blog built for developers, by developers.</h5>
-        <h5 class="jtxt">Browse new articles, or filter by subject below.</h5>
+        <h5 class="jtxt" id="jsubhead">The blog built for developers, by developers.</h5>
+        <h5 class="jtxt" id="jsum">Browse new articles, or filter by subject below.</h5>
         <div class="dropdown">
             <button class="btn btn-primary dropdown-toggle float-left" type="button" data-toggle="dropdown">Filter by topic
             <span class="caret"></span></button>
 
-            <button class="btn btn-danger float-left d-none" id="clearFilter">Clear filter</button>
+            <button class="btn btn-danger float-left d-none ml-1" id="clearFilter">Clear filter</button>
+            <button class="btn btn-secondary float-left d-none ml-1" id="goBack">Go back</button>
 
             <div class="dropdown-menu w-100 pl-3">
                 <button class="tag btn btn-sm btn-outline-primary">HTML</button>
