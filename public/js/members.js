@@ -168,9 +168,13 @@ $(document).ready(function () {
       const summary = $("#post-summary").val().trim();
       const body = $("#post-body").val();
       const category = getRBN();
-      const headerURL = $("#post-image").val().trim();
+      let headerURL = $("#post-image").val().trim();
       const UserId = data.id
 
+      if (headerURL === '') {
+        headerURL = 'https://i.imgur.com/QuOzB7A.jpg'
+      }
+      
       $.post(`/api/posts`, {
         title,
         summary,
