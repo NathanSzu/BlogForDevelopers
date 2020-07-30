@@ -247,15 +247,20 @@ $(document).ready(function () {
     jsum.empty();
     jsum.text(summary)
     const card = $('<div class="card">').addClass('card, text-center');
+    const h2 = $('<h2>').text(title);
     const cardBody = $('<div>').addClass('card-body');
+
     const headerURLinput = $('<img>').attr("src", headerURL);
-    headerURLinput.addClass("imgCards")
+    headerURLinput.addClass('imgPostSingle')
+
     const bodyinput = $('<pre>').text(body)
     bodyinput.addClass('body-format');
-    const categoryinput = $('<p>').text(category);
+
+    const categoryinput = $('<h5>').text(`Tags: ${category}`);
+    categoryinput.addClass("mt-4")
 
 
-    cardBody.append(headerURLinput, bodyinput, categoryinput)
+    cardBody.append(headerURLinput, h2, bodyinput, categoryinput)
     card.append(cardBody);
     $('#articles').append(card)
   }
@@ -286,10 +291,10 @@ $(document).ready(function () {
 
 function animate(){
   gsap.from(".homepageCard", {
-    duration: 2,
-    scale: 0.5, 
+    duration: 1.5,
+    scale: 0.7, 
     opacity: 0, 
-    delay: 0.2, 
+    delay: 0.1, 
     stagger: 0.2,
     ease: "elastic", 
     force3D: true

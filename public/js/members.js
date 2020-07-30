@@ -1,7 +1,10 @@
+// const user = require("../models/user");
+
 $(document).ready(function () {
   // This file just does a GET request to figure out which user is logged in
   // and updates the HTML on the page
   $.get("/api/user_data").then(function (data) {
+    console.log(data)
     // "data" pulled from passport only contains email address and password. 
     $(".member-name").text(data.email);
 
@@ -10,7 +13,7 @@ $(document).ready(function () {
 
       var { id, email, password, name, imgURL, bio, Posts } = data
       var { body, category, headerURL, summary, title } = Posts
-
+      console.log(id)
       // Header
       $(".member-name").text(name);
       // Left side
@@ -27,6 +30,7 @@ $(document).ready(function () {
       $('#user-bio').val(bio)
 
       function updateUserInfo(userData) {
+        console.log(userData)
         $.ajax({
           method: "PUT",
           url: "/api/user",
@@ -44,7 +48,7 @@ $(document).ready(function () {
           name: $('#user-name').val(),
           imgURL: $('#user-imgURL').val(),
           bio: $('#user-bio').val(),
-          userId: id
+          userId: data.id
         }
         updateUserInfo(userData)
       })
@@ -54,7 +58,7 @@ $(document).ready(function () {
 
         var { body, category, headerURL, title, id } = data.Posts[i];
 
-        const card = $('<div class="card">').addClass('card, text-center');
+        const card = $('<div class="card">').addClass('card, text-center my-1');
         const cardBody = $('<div>').addClass('card-body');
 
         const titleinput = $('<h2>').text(title);
