@@ -29,7 +29,10 @@ $(document).ready(function () {
       cardBody.append(imgDiv, textDiv)
       card.append(cardBody);
       $('#articles').prepend(card)
+
     } // END OF Render all posts
+
+    animate()
 
     // Filter by Tag
     $(".tag").on("click", function () {
@@ -69,6 +72,7 @@ $(document).ready(function () {
           card.append(cardBody);
           $('#articles').prepend(card)
         }
+        animate()
 
         // ONE POST DISPLAY
         $(".homepageCard").on("click", function () {
@@ -90,6 +94,8 @@ $(document).ready(function () {
 
       })
     }) // END OF Filter by Tag
+
+  
 
 
     // ONE POST DISPLAY
@@ -144,6 +150,7 @@ $(document).ready(function () {
           $('#articles').prepend(card)
 
         }
+        animate()
 
         // ONE POST DISPLAY
         $(".homepageCard").on("click", function () {
@@ -204,6 +211,7 @@ $(document).ready(function () {
           $('#articles').prepend(card)
 
         }
+        animate()
 
         // ONE POST DISPLAY
         $(".homepageCard").on("click", function () {
@@ -252,6 +260,8 @@ $(document).ready(function () {
     $('#articles').append(card)
   }
 
+  animate()
+
   // Function to reset the display after showing articles!
   function resetJumbotron() {
     // SET THESE EQUAL TO THE STATIC HTML!!!
@@ -274,3 +284,14 @@ $(document).ready(function () {
 
 })  //End of document.ready
 
+function animate(){
+  gsap.from(".homepageCard", {
+    duration: 2,
+    scale: 0.5, 
+    opacity: 0, 
+    delay: 0.2, 
+    stagger: 0.2,
+    ease: "elastic", 
+    force3D: true
+  });
+}

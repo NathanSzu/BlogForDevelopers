@@ -80,8 +80,8 @@ h3 {
 }
 
 .edit-profile-button {
-  position: absolute;
-  bottom: 25px;
+  position: relative;
+  top: 25rem;
 }
 
 .new-post-btn {
