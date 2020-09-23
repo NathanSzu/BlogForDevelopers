@@ -18,3 +18,9 @@
   <a href='#Tests'>Tests</a>
 
   <a href='#Questions'>Questions</a>
+
+  ## <a id='Installation' style='color:white;'>Installation</a>
+  Download and run npm install from node.
+
+  ## <a id='Usage' style='color:white;'>Usage</a>
+  Login or create a user account, then use the members page to edit account details and create blog posts.
