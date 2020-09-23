@@ -36,3 +36,9 @@ The above copyright notice and this permission notice shall be included in all c
 
 ## <a id='Contribution' style='color:white;'>Contribution</a>
 Fork the repo and submit potential changes/fixes to merge. All are welcome to suggest submissions.
+
+## <a id='Questions' style='color:white;'>Questions - Contact Me</a>
+
+GitHub Username: NathanSzu
+
+Github Profile: <a href='https://github.com/NathanSzu'>https://github.com/NathanSzu</a>
